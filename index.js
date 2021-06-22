@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const fetch = require('node-fetch');
 
 try {
   // `who-to-greet` input defined in action metadata file
@@ -18,7 +19,31 @@ try {
   console.log(`The event payload: ${payload}`);
 
 
+
+
+  fetch(`${jiraBaseUrl}/rest/api/3/issue/SSD-9`, {
+  method: 'GET',
+  headers: {
+    'Authorization': `Basic ${Buffer.from(
+      `${jiraUserEmail}:${jiraApiToken}`
+    ).toString('base64')}`,
+    'Accept': 'application/json'
+  }
+})
+  .then(response => {
+    console.log(
+      `Response: ${response.status} ${response.statusText}`
+    );
+    return response.text();
+  })
+  .then(text => console.log(text))
+  .catch(err => console.error(err));
+
+
 } catch (error) {
   core.setFailed(error.message);
 }
+
+
+
 
