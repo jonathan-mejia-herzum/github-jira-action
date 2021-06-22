@@ -12,8 +12,8 @@ try {
   core.setOutput("time", time);
   // Get the JSON webhook payload for the event that triggered the workflow
   const payload = JSON.stringify(github.context.payload, undefined, 2)
+  console.log(`jira TOken ${jiraApiToken}`);
   console.log(`The event payload: ${payload}`);
-  console.log(jiraApiToken);
 
 
 } catch (error) {
