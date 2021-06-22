@@ -21,7 +21,7 @@ try {
 
 
 
-  fetch(`${jiraBaseUrl}/rest/api/3/issue/SSD-9`, {
+fetch(`${jiraBaseUrl}/rest/api/3/issue/SSD-9`, {
   method: 'GET',
   headers: {
     'Authorization': `Basic ${Buffer.from(
