@@ -34,7 +34,7 @@ try {
   console.log(`jira jiraBaseUrl: ${jiraBaseUrl}`);
   console.log(`jira jira email: ${jiraUserEmail}`);
   console.log(`This is the commit ${issue}`);
-  console.log(`This is the payload ${payload}`);s
+  console.log(`This is the payload ${payload}`);
 
 
 
@@ -49,7 +49,7 @@ try {
   })
   .then(response => {
     console.log(
-      `Response: ${response.status} ${response.statusText}`
+      `Response: ${response.status} ${JSON.stringify(response.statusText, undefined, 2)}`
     );
     return response.text();
   })
