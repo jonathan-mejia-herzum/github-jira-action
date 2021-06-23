@@ -41,10 +41,10 @@ const issue = words[0];
 
 
 const bodyJson = body.getBody(url, message);
-const url = `https://${jiraBaseUrl}.atlassian.net/rest/api/3/issue/${issue}/comment`;
+const urlJira = `https://${jiraBaseUrl}.atlassian.net/rest/api/3/issue/${issue}/comment`;
 
 
-fetch(url, {
+fetch(urlJira, {
   method: 'POST',
   headers: {
     'Authorization': `Basic ${Buffer.from(
