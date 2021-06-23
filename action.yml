@@ -13,7 +13,11 @@ inputs:
     description: 'Its the token we use to add the comment'
     required: true
     default: 'World'
-outputs:
+  event: # This is the even execute the script
+    description: 'This is the even execute the script'
+    required: true
+    default: ${{ github.event }}
+outputs:s
   time: # id of output
     description: 'The time we greeted you'
 runs:
