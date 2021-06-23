@@ -14,14 +14,15 @@ try {
   // Get the JSON webhook payload for the event that triggered the workflow
   const payload = JSON.stringify(github.context.payload, undefined, 2)
 
-  const message = payload.commits[0].message;
-  const words = message.split(' ');
-  const issue = words[0];
+
 
   console.log(`jira TOken ${jiraApiToken}`);
   console.log(`jira jiraBaseUrl: ${jiraBaseUrl}`);
   console.log(`jira jira email: ${jiraUserEmail}`);
   console.log(`The event payload: ${payload}`);
+  const message = payload.commits[0].message;
+  const words = message.split(' ');
+  const issue = words[0];
   console.log(`This is the commit ${issue}`);
 
 
