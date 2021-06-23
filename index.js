@@ -10,8 +10,6 @@ const event = core.getInput('event');
 const time = (new Date()).toTimeString();
 core.setOutput("time", time);
 const payload = JSON.stringify(github.context.payload, undefined, 2);
-console.log(`thi is the event ${event}`);
-console.log(`This is payload:  ${payload}`)
 
 let commit, url, message;
 
