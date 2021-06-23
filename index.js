@@ -1,7 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const fetch = require('node-fetch');
-const { Document } = require('adf-builder');
+var { Document } = require('adf-builder');
 
 
 try {
