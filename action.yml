@@ -17,7 +17,7 @@ inputs:
     description: 'This is the even execute the script'
     required: true
     default: ${{ github.event }}
-outputs:s
+outputs:
   time: # id of output
     description: 'The time we greeted you'
 runs:
