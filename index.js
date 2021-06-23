@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const fetch = require('node-fetch');
+const body = require('./body');
 
 
 try {
@@ -29,67 +30,23 @@ try {
   const issue = words[0];
 
 
+  const bodyJson = body.getBody(commit.url, message);
+  const url = `${jiraBaseUrl}/rest/api/3/issue/${issue}/comment`;
   
 
   console.log(`jira TOken ${jiraApiToken}`);
   console.log(`jira jiraBaseUrl: ${jiraBaseUrl}`);
   console.log(`jira jira email: ${jiraUserEmail}`);
   console.log(`This is the commit ${issue}`);
+  console.log(`This is the url ${url}`);
+  
+  console.log(JSON.stringify(bodyJson, undefined, 2))
   console.log(`This is the payload ${payload}`);
 
-  const body = {
-    "type": "doc",
-    "content": [
-      {
-        "type": "panel",
-        "content": [
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "text",
-                "text": "This is an automatic comment from Github."
-              }
-            ]
-          }
-        ],
-        "attrs": {
-          "panelType": "info"
-        }
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "Go to the commit",
-            "marks": [
-              {
-                "type": "link",
-                "attrs": {
-                  "href": commit.url
-                }
-              }
-            ]
-          },
-          {
-            "type": "text",
-            "text": message
-          },
-          {
-            "type": "emoji",
-            "attrs": {
-              "shortName": ":nerd:"
-            }
-          }
-        ]
-      }
-    ],
-    "version": 1
-  }
 
 
-  fetch(`${jiraBaseUrl}/rest/api/3/issue/${issue}/comment`, {
+
+  fetch(url, {
   method: 'POST',
   headers: {
     'Authorization': `Basic ${Buffer.from(
