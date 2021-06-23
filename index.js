@@ -26,54 +26,14 @@ try {
 
 
 
-
-
-
-} catch (error) {
-  core.setFailed(error.message);
-}
-
-
-
-
-
-/*
-// This code sample uses the 'node-fetch' library:
-// https://www.npmjs.com/package/node-fetch
-const fetch = require('node-fetch');
-
-const bodyData = `{
-  "visibility": {
-    "type": "role",
-    "value": "Administrators"
-  },
-  "body": {
-    "type": "doc",
-    "version": 1,
-    "content": [
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget venenatis elit. Duis eu justo eget augue iaculis fermentum. Sed semper quam laoreet nisi egestas at posuere augue semper.",
-            "type": "text"
-          }
-        ]
-      }
-    ]
-  }
-}`;
-
-fetch(`${jiraBaseUrl}/rest/api/3/issue/{issueIdOrKey}/comment`, {
-  method: 'POST',
+fetch(`${jiraBaseUrl}/rest/api/3/issue/SSD-9`, {
+  method: 'GET',
   headers: {
     'Authorization': `Basic ${Buffer.from(
-      'email@example.com:<api_token>'
+      `${jiraUserEmail}:${jiraApiToken}`
     ).toString('base64')}`,
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  },
-  body: bodyData
+    'Accept': 'application/json'
+  }
 })
   .then(response => {
     console.log(
@@ -83,5 +43,10 @@ fetch(`${jiraBaseUrl}/rest/api/3/issue/{issueIdOrKey}/comment`, {
   })
   .then(text => console.log(text))
   .catch(err => console.error(err));
-*/
+
+
+} catch (error) {
+  core.setFailed(error.message);
+}
+
 
