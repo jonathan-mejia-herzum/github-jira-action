@@ -21,10 +21,10 @@ try {
   console.log(`jira jira email: ${jiraUserEmail}`);
   console.log(`The event payload: ${payload}`);
   const message = payload.commits[0].message;
-  const words = message.split(' ');
-  const issue = words[0];
   console.log(`This is the message ${message}`);
+  const words = message.split(' ');
   console.log(`This is the words ${words}`);
+  const issue = words[0];
   console.log(`This is the commit ${issue}`);
 
 
