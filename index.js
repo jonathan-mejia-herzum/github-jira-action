@@ -1,6 +1,8 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const fetch = require('node-fetch');
+const { Document } = require('adf-builder');
+
 
 try {
   // `who-to-greet` input defined in action metadata file
@@ -36,25 +38,39 @@ try {
   console.log(`This is the commit ${issue}`);
   console.log(`This is the payload ${payload}`);
 
+  const doc = new Document();
+  doc.panel("info")
+      .paragraph()
+      .text("This is an automatic comment from Github.");
+  doc.paragraph()
+  .link('Go to the commit', commit.url)
+  .paragraph(message)
+  .emoji(':nerd:');
+  const body = doc.toJSON();
 
 
-  fetch(`${jiraBaseUrl}/rest/api/3/issue/SSD-9`, {
-    method: 'GET',
-    headers: {
-      'Authorization': `Basic ${Buffer.from(
-        `${jiraUserEmail}:${jiraApiToken}`
-      ).toString('base64')}`,
-      'Accept': 'application/json'
-    }
-  })
+  fetch(`${jiraBaseUrl}/rest/api/3/issue/${issue}/comment`, {
+  method: 'POST',
+  headers: {
+    'Authorization': `Basic ${Buffer.from(
+      `${jiraUserEmail}:${jiraApiToken}`
+    ).toString('base64')}`,
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  },
+  body: {
+    "body": body
+  }
+})
   .then(response => {
     console.log(
-      `Response: ${response.status} ${JSON.stringify(response.statusText, undefined, 2)}`
+      `Response: ${response.status} ${response.statusText}`
     );
     return response.text();
   })
   .then(text => console.log(text))
   .catch(err => console.error(err));
+
 
 
 } catch (error) {

@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@actions/core": "^1.4.0",
-    "@actions/github": "^5.0.0"
+    "@actions/github": "^5.0.0",
+    "adf-builder": "^3.3.0"
   }
 }
