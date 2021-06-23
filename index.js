@@ -24,7 +24,7 @@ const issue = words[0];
 
 
 const bodyJson = body.getBody(commit.url, message);
-const url = `${jiraBaseUrl}/rest/api/3/issue/${issue}/comment`;
+const url = `https://${jiraBaseUrl}.atlassian.net/rest/api/3/issue/${issue}/comment`;
 
 
 fetch(url, {

@@ -1,10 +1,6 @@
 name: 'Hello World'
 description: 'Greet someone and record the time'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
-    required: true
-    default: 'World'
   JIRA_BASE_URL:  # jira base url https://<yourdomain>.atlassian.net
     description: 'It is the base url'
     required: true

@@ -1,21 +1,27 @@
-# Hello world javascript action
+# Add Comment to gira
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+This action adds a comment to a Jira problem, the problem key will assume that it is in the comment title.
 
 ## Inputs
 
-## `who-to-greet`
+## `JIRA_BASE_URL`
 
-**Required** The name of the person to greet. Default `"World"`.
+**Required** jira base url https://<yourdomain>.atlassian.net
 
-## Outputs
+## `JIRA_USER_EMAIL`
 
-## `time`
+**Required** It is the email to access to jira instance
 
-The time we greeted you.
+## `JIRA_API_TOKEN`
+
+**Required** It's the token we use to add the comment [How To](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/ "How To")
+
 
 ## Example usage
 
-uses: actions/hello-world-javascript-action@v1.1
+````
+uses: jonathan-mejia-herzum/github-jira-action@main
 with:
-  who-to-greet: 'Mona the Octocat'
+  JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+  JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+  JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}s
