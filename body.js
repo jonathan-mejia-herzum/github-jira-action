@@ -35,7 +35,12 @@ const getBody = (link, comment) => {
                                     }
                                 }
                             ]
-                        },
+                        }
+                    ]
+                },
+                {
+                    "type": "paragraph",
+                    "content": [
                         {
                             "type": "text",
                             "text": comment
