@@ -40,10 +40,10 @@ fetch(url, {
 })
   .then(response => {
     if(response.status != 201){
-      throw new Error('The comment was not inserted in Jira');
+      core.setFailed(response.statusText);
     }
     console.log(`Response: ${response.status}`);
-    return response.text();
+    return 'OK';
   });
 
 
