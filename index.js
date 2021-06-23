@@ -55,7 +55,7 @@ try {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    body: bodyJson
+    body: JSON.stringify(bodyJson, undefined, 2)
   })
     .then(response => {
       console.log(
