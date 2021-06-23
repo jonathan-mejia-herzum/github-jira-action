@@ -13,16 +13,17 @@ const payload = JSON.stringify(github.context.payload, undefined, 2);
 console.log(`thi is the event ${event}`);
 console.log(`This is payload:  ${payload}`)
 
-let commit, message;
+let commit, url, message;
 
 if (event == 'release') {
+  url = github.context.payload.release.html_url;
   message = github.context.payload.release.name;
 }
 else {
 
   commit = github.context.payload.head_commit;
   message = commit.message;
-
+  url = commit.url;
 }
 
 
@@ -39,7 +40,7 @@ words = message.split(' ');
 const issue = words[0];
 
 
-const bodyJson = body.getBody(commit.url, message);
+const bodyJson = body.getBody(url, message);
 const url = `https://${jiraBaseUrl}.atlassian.net/rest/api/3/issue/${issue}/comment`;
 
 
