@@ -14,7 +14,7 @@ inputs:
     required: true
     default: 'World'
   JIRA_API_TOKEN:  # jira ap token HXe8DGg1iJd2AopzyxkFB7F2
-    description: 'It's the token we use to add the comment'
+    description: 'Its the token we use to add the comment'
     required: true
     default: 'World'
 outputs:
