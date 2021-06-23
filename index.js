@@ -15,27 +15,38 @@ try {
   const commit = github.context.payload.commits[0];
   const payload = JSON.stringify(github.context.payload, undefined, 2)
   const message = commit.message;
-  const words = message.split(' ');
+
+  const indexOfFirst = message.indexOf('\n');
+  
+  let words;
+  if(indexOfFirst>0){
+    words = message.split('\n');
+  }
+
+  
+  words = words[0].split(' ');
   const issue = words[0];
 
+
+  
 
   console.log(`jira TOken ${jiraApiToken}`);
   console.log(`jira jiraBaseUrl: ${jiraBaseUrl}`);
   console.log(`jira jira email: ${jiraUserEmail}`);
   console.log(`This is the commit ${issue}`);
-  console.log(`This is the payload ${payload}`);
+  console.log(`This is the payload ${payload}`);s
 
 
 
-fetch(`${jiraBaseUrl}/rest/api/3/issue/SSD-9`, {
-  method: 'GET',
-  headers: {
-    'Authorization': `Basic ${Buffer.from(
-      `${jiraUserEmail}:${jiraApiToken}`
-    ).toString('base64')}`,
-    'Accept': 'application/json'
-  }
-})
+  fetch(`${jiraBaseUrl}/rest/api/3/issue/SSD-9`, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Basic ${Buffer.from(
+        `${jiraUserEmail}:${jiraApiToken}`
+      ).toString('base64')}`,
+      'Accept': 'application/json'
+    }
+  })
   .then(response => {
     console.log(
       `Response: ${response.status} ${response.statusText}`
