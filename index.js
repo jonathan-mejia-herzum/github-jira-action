@@ -12,15 +12,15 @@ try {
   const time = (new Date()).toTimeString();
   core.setOutput("time", time);
   // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context, undefined, 2)
+  const commit = github.context.payload.commits[0];
+  const payload = JSON.stringify(github.context.payload, undefined, 2)
 
 
 
   console.log(`jira TOken ${jiraApiToken}`);
   console.log(`jira jiraBaseUrl: ${jiraBaseUrl}`);
   console.log(`jira jira email: ${jiraUserEmail}`);
-  console.log(`The event payload: ${payload}`);
-  const message = payload.commits[0].message;
+  const message = commit.message;
   console.log(`This is the message ${message}`);
   const words = message.split(' ');
   console.log(`This is the words ${words}`);
