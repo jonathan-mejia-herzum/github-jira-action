@@ -56,7 +56,7 @@ try {
     'Content-Type': 'application/json'
   },
   body: {
-    "body": body
+    "body": bodyJson
   }
 })
   .then(response => {
