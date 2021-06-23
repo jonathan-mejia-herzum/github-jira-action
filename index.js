@@ -23,6 +23,8 @@ try {
   const message = payload.commits[0].message;
   const words = message.split(' ');
   const issue = words[0];
+  console.log(`This is the message ${message}`);
+  console.log(`This is the words ${words}`);
   console.log(`This is the commit ${issue}`);
 
 
