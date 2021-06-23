@@ -1,7 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const fetch = require('node-fetch');
-var { Document } = require('adf-builder');
 
 
 try {
@@ -38,15 +37,56 @@ try {
   console.log(`This is the commit ${issue}`);
   console.log(`This is the payload ${payload}`);
 
-  const doc = new Document();
-  doc.panel("info")
-      .paragraph()
-      .text("This is an automatic comment from Github.");
-  doc.paragraph()
-  .link('Go to the commit', commit.url)
-  .paragraph(message)
-  .emoji(':nerd:');
-  const body = doc.toJSON();
+  const body = {
+    "type": "doc",
+    "content": [
+      {
+        "type": "panel",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "This is an automatic comment from Github."
+              }
+            ]
+          }
+        ],
+        "attrs": {
+          "panelType": "info"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Go to the commit",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": commit.url
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": message
+          },
+          {
+            "type": "emoji",
+            "attrs": {
+              "shortName": ":nerd:"
+            }
+          }
+        ]
+      }
+    ],
+    "version": 1
+  }
 
 
   fetch(`${jiraBaseUrl}/rest/api/3/issue/${issue}/comment`, {
