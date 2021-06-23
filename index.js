@@ -39,12 +39,12 @@ fetch(url, {
   body: JSON.stringify(bodyJson, undefined, 2)
 })
   .then(response => {
-    console.log(
-      `Response: ${response.status} ${response.statusText}`
-    );
+    if(response.status != 201){
+      throw new Error('The comment was not inserted in Jira');
+    }
+    console.log(`Response: ${response.status}`);
     return response.text();
-  })
-  .then(text => console.log(text));
+  });
 
 
 
