@@ -1,55 +1,57 @@
-const getBody = (link, comment) =>{
+const getBody = (link, comment) => {
 
     return {
-        "type": "doc",
-        "content": [
-          {
-            "type": "panel",
+        "body": {
+            "type": "doc",
             "content": [
-              {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "type": "text",
-                    "text": "This is an automatic comment from Github."
-                  }
-                ]
-              }
-            ],
-            "attrs": {
-              "panelType": "info"
-            }
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "text",
-                "text": "Go to the commit",
-                "marks": [
-                  {
-                    "type": "link",
+                {
+                    "type": "panel",
+                    "content": [
+                        {
+                            "type": "paragraph",
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": "This is an automatic comment from Github."
+                                }
+                            ]
+                        }
+                    ],
                     "attrs": {
-                      "href": link
+                        "panelType": "info"
                     }
-                  }
-                ]
-              },
-              {
-                "type": "text",
-                "text": comment
-              },
-              {
-                "type": "emoji",
-                "attrs": {
-                  "shortName": ":nerd:"
+                },
+                {
+                    "type": "paragraph",
+                    "content": [
+                        {
+                            "type": "text",
+                            "text": "Go to the commit",
+                            "marks": [
+                                {
+                                    "type": "link",
+                                    "attrs": {
+                                        "href": link
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "text": comment
+                        },
+                        {
+                            "type": "emoji",
+                            "attrs": {
+                                "shortName": ":nerd:"
+                            }
+                        }
+                    ]
                 }
-              }
-            ]
-          }
-        ],
-        "version": 1
-      }
+            ],
+            "version": 1
+        }
+    }
 
 }
 

@@ -19,27 +19,27 @@ try {
   const message = commit.message;
 
   const indexOfFirst = message.indexOf('\n');
-  
+
   let words;
-  if(indexOfFirst>0){
+  if (indexOfFirst > 0) {
     words = message.split('\n');
   }
 
-  
+
   words = words[0].split(' ');
   const issue = words[0];
 
 
   const bodyJson = body.getBody(commit.url, message);
   const url = `${jiraBaseUrl}/rest/api/3/issue/${issue}/comment`;
-  
+
 
   console.log(`jira TOken ${jiraApiToken}`);
   console.log(`jira jiraBaseUrl: ${jiraBaseUrl}`);
   console.log(`jira jira email: ${jiraUserEmail}`);
   console.log(`This is the commit ${issue}`);
   console.log(`This is the url ${url}`);
-  
+
   console.log(JSON.stringify(bodyJson, undefined, 2))
   console.log(`This is the payload ${payload}`);
 
@@ -47,26 +47,24 @@ try {
 
 
   fetch(url, {
-  method: 'POST',
-  headers: {
-    'Authorization': `Basic ${Buffer.from(
-      `${jiraUserEmail}:${jiraApiToken}`
-    ).toString('base64')}`,
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  },
-  body: {
-    "body": bodyJson
-  }
-})
-  .then(response => {
-    console.log(
-      `Response: ${response.status} ${response.statusText}`
-    );
-    return response.text();
+    method: 'POST',
+    headers: {
+      'Authorization': `Basic ${Buffer.from(
+        `${jiraUserEmail}:${jiraApiToken}`
+      ).toString('base64')}`,
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: bodyJson
   })
-  .then(text => console.log(text))
-  .catch(err => console.error(err));
+    .then(response => {
+      console.log(
+        `Response: ${response.status} ${response.statusText}`
+      );
+      return response.text();
+    })
+    .then(text => console.log(text))
+    .catch(err => console.error(err));
 
 
 
