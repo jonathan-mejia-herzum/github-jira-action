@@ -31,10 +31,11 @@ const indexOfFirst = message.indexOf('\n');
 let words;
 if (indexOfFirst > 0) {
   words = message.split('\n');
+  words = words[0];
 }
+words = message.split(' ');
 
 
-words = words[0].split(' ');
 const issue = words[0];
 
 
