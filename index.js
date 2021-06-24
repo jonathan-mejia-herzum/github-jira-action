@@ -70,8 +70,6 @@ fetch(urlJira, {
 const urlCustom = `https://${jiraBaseUrl}.atlassian.net/rest/api/3/app/field/${issue}/value`;
 
 
-const fetch = require('node-fetch');
-
 const bodyData = `{
   "updates": [
     {
