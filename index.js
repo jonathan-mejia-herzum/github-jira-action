@@ -6,7 +6,9 @@ const body = require('./body');
 const jiraBaseUrl = core.getInput('JIRA_BASE_URL');
 const jiraUserEmail = core.getInput('JIRA_USER_EMAIL');
 const jiraApiToken = core.getInput('JIRA_API_TOKEN');
+const idField = core.getInput('idField');
 const event = core.getInput('event');
+const sha = core.getInput('sha');
 const time = (new Date()).toTimeString();
 core.setOutput("time", time);
 const payload = JSON.stringify(github.context.payload, undefined, 2);
@@ -39,7 +41,7 @@ const issue = words[0];
 
 
 const bodyJson = body.getBody(url, message);
-const urlJira = `https://${jiraBaseUrl}.atlassian.net/rest/api/3/issue/${issue}/comment`;
+const urlJira = `https://${jiraBaseUrl}.atlassian.net/rest/api/3/issue/${idField}/comment`;
 
 
 fetch(urlJira, {
@@ -65,4 +67,39 @@ fetch(urlJira, {
 
 
 
+const urlJira = `https://${jiraBaseUrl}.atlassian.net/rest/api/3/app/field/${issue}/value`;
+
+
+const fetch = require('node-fetch');
+
+const bodyData = `{
+  "updates": [
+    {
+      "issueIds": [
+        ${issue}
+      ],
+      "value": ${sha}
+    }
+  ]
+}`;
+
+fetch(urlJira, {
+  method: 'PUT',
+  headers: {
+    'Authorization': `Basic ${Buffer.from(
+      `${jiraUserEmail}:${jiraApiToken}`
+    ).toString('base64')}`,
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  },
+  body: bodyData
+})
+  .then(response => {
+    console.log(
+      `Response: ${response.status} ${response.statusText}`
+    );
+    return response.text();
+  })
+  .then(text => console.log(text))
+  .catch(err => console.error(err));
 
