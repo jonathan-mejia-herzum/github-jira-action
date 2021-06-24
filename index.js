@@ -76,7 +76,7 @@ const bodyData = `{
       "issueIds": [
         10102
       ],
-      "value": ${sha}
+      "value": "${sha}"
     }
   ]
 }`;
