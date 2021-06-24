@@ -41,7 +41,7 @@ const issue = words[0];
 
 
 const bodyJson = body.getBody(url, message);
-const urlJira = `https://${jiraBaseUrl}.atlassian.net/rest/api/3/issue/${idField}/comment`;
+const urlJira = `https://${jiraBaseUrl}.atlassian.net/rest/api/3/issue/${issue}/comment`;
 
 
 fetch(urlJira, {
@@ -67,7 +67,7 @@ fetch(urlJira, {
 
 
 
-const urlJira = `https://${jiraBaseUrl}.atlassian.net/rest/api/3/app/field/${issue}/value`;
+const urlCustom = `https://${jiraBaseUrl}.atlassian.net/rest/api/3/app/field/${issue}/value`;
 
 
 const fetch = require('node-fetch');
@@ -83,7 +83,7 @@ const bodyData = `{
   ]
 }`;
 
-fetch(urlJira, {
+fetch(urlCustom, {
   method: 'PUT',
   headers: {
     'Authorization': `Basic ${Buffer.from(
