@@ -18,7 +18,7 @@ inputs:
     required: true
     default: ${{ github.event_name }}
   idField: # This is the custom field's id 
-    description: 'This is the custom field's id'
+    description: 'This is the custom field s id'
     required: true
     default: '0000'
   sha: # This is the custom field's id 
