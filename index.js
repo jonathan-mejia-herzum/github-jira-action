@@ -74,7 +74,7 @@ const bodyData = `{
   "updates": [
     {
       "issueIds": [
-        ${issue}
+        '10102'
       ],
       "value": ${sha}
     }
