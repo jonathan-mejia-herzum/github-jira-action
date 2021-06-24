@@ -67,14 +67,14 @@ fetch(urlJira, {
 
 
 
-const urlCustom = `https://${jiraBaseUrl}.atlassian.net/rest/api/3/app/field/${issue}/value`;
+const urlCustom = `https://${jiraBaseUrl}.atlassian.net/rest/api/3/app/field/10102/value`;
 
 
 const bodyData = `{
   "updates": [
     {
       "issueIds": [
-        10102
+        ${issue}
       ],
       "value": "${sha}"
     }
