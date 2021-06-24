@@ -59,7 +59,7 @@ fetch(urlJira, {
     if (response.status != 201) {
       core.setFailed(response.statusText);
     }
-    console.log(`Response: ${response.status}`);
+    console.log(`Response: ${response.status} comment`);
     return 'OK';
   });
 
@@ -94,7 +94,7 @@ fetch(urlCustom, {
 })
   .then(response => {
     console.log(
-      `Response: ${response.status} ${response.statusText}`
+      `Response: ${response.status} ${response.statusText} custom`
     );
     return response.text();
   })
