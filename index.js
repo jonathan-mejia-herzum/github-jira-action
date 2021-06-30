@@ -39,6 +39,33 @@ words = message.split(' ');
 
 const issue = words[0];
 
+/****************GET ID ISSUE************************** */
+
+const getIssue = `https://${jiraBaseUrl}.atlassian.net/rest/api/3/issue/${issue}`;
+let idIssue = 0;
+
+fetch(getIssue, {
+  method: 'GET',
+  headers: {
+    'Authorization': `Basic ${Buffer.from(
+      `${jiraUserEmail}:${jiraApiToken}`
+    ).toString('base64')}`,
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  }
+})
+  .then(response => {
+    if (response.status != 200) {
+      core.setFailed(response.statusText);
+    }
+    idIssue = response.id;
+    console.log(`Response: ${response.status} get ID Issue ${idIssue} `);
+    return 'OK';
+  });
+
+
+/*******************POST COMMIT*********************** */
+
 
 const bodyJson = body.getBody(url, message);
 const urlJira = `https://${jiraBaseUrl}.atlassian.net/rest/api/3/issue/${issue}/comment`;
@@ -55,7 +82,7 @@ fetch(urlJira, {
   },
   body: JSON.stringify(bodyJson, undefined, 2)
 })
-  .then(response => {
+  .(response => {
     if (response.status != 201) {
       core.setFailed(response.statusText);
     }
@@ -74,7 +101,7 @@ const bodyData = `{
   "updates": [
     {
       "issueIds": [
-        ${issue}
+        ${idIssue}
       ],
       "value": "${sha}"
     }
@@ -92,12 +119,12 @@ fetch(urlCustom, {
   },
   body: bodyData
 })
-  .then(response => {
+  .(response => {
     console.log(
       `Response: ${response.status} ${response.statusText} custom`
     );
     return response.text();
   })
-  .then(text => console.log(text))
+  .(text => console.log(text))
   .catch(err => console.error(err));
 
