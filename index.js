@@ -82,7 +82,7 @@ fetch(urlJira, {
   },
   body: JSON.stringify(bodyJson, undefined, 2)
 })
-  .(response => {
+.then(response => {
     if (response.status != 201) {
       core.setFailed(response.statusText);
     }
@@ -119,12 +119,12 @@ fetch(urlCustom, {
   },
   body: bodyData
 })
-  .(response => {
+  .then(response => {
     console.log(
       `Response: ${response.status} ${response.statusText} custom`
     );
     return response.text();
   })
-  .(text => console.log(text))
+  .then(text => console.log(text))
   .catch(err => console.error(err));
 
