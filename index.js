@@ -13,6 +13,8 @@ const time = (new Date()).toTimeString();
 core.setOutput("time", time);
 const payload = JSON.stringify(github.context.payload, undefined, 2);
 
+console.log(payload);
+
 let commit, url, message;
 
 if (event == 'release') {
@@ -39,7 +41,7 @@ words = message.split(' ');
 
 const issue = words[0];
 
-/****************GET ID ISSUE************************** */
+/*******************GET ID ISSUE************************** */
 
 const getIssue = `https://${jiraBaseUrl}.atlassian.net/rest/api/3/issue/${issue}`;
 let idIssue = 0;
