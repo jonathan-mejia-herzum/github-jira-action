@@ -11,7 +11,7 @@ const event = core.getInput('event');
 const sha = core.getInput('sha');
 const time = (new Date()).toTimeString();
 core.setOutput("time", time);
-const payload = JSON.stringify(github.context, undefined, 2);
+const payload = JSON.stringify(github, undefined, 2);
 
 console.log(payload);
 
