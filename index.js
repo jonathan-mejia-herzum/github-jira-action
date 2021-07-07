@@ -146,8 +146,7 @@ fetch('https://api.github.com/repos/jonathan-mejia-herzum/node/issues', {
     'Authorization': `token ${token}`,
     'Accept': 'application/json',
     'Content-Type': 'application/json'
-  },
-  body: bodyData
+  }
 })
   .then(response => {
     console.log(
