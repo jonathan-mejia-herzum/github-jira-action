@@ -136,3 +136,24 @@ fetch(urlCustom, {
   .then(text => console.log(text))
   .catch(err => console.error(err));
 
+
+
+
+
+fetch('https://api.github.com/repos/jonathan-mejia-herzum/node/issues', {
+  method: 'GET',
+  headers: {
+    'Authorization': `token ${token}`,
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  },
+  body: bodyData
+})
+  .then(response => {
+    console.log(
+      `Response: ${response} token`
+    );
+    return response.text();
+  })
+  .then(text => console.log(text))
+  .catch(err => console.error(err));
