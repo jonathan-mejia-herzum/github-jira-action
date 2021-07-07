@@ -28,7 +28,6 @@ inputs:
   token: # This is the custom field's id 
     description: 'The commit SHA that triggered the workflow run.'
     required: true
-    default: ${{ secrets.GITHUB_TOKEN }}
 outputs:
   time: # id of output
     description: 'The time we greeted you'
