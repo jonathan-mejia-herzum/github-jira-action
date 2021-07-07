@@ -148,6 +148,6 @@ fetch('https://api.github.com/repos/jonathan-mejia-herzum/node/issues', {
     'Content-Type': 'application/json'
   }
 })
-then(response => response.json())
+.then(response => response.json())
 .then(data => console.log(data))
   .catch(err => console.error(err));
