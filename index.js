@@ -13,7 +13,7 @@ const event = core.getInput('event');
 const sha = core.getInput('sha');
 const time = (new Date()).toTimeString();
 core.setOutput("time", time);
-const payload = JSON.stringify(github.payload, undefined, 2);
+const payload = JSON.stringify(github, undefined, 2);
 const payloadtoken = JSON.stringify(github.token, undefined, 2);
 
 const ref = 'refs/heads/create-comment';
@@ -25,3 +25,4 @@ console.log(payload);
 console.log('****token****')
 console.log(token);
 console.log('********')
+
