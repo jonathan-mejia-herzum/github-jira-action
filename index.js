@@ -22,7 +22,7 @@ let commit, url, message, branch;
 if (event == 'release') {
   url = github.context.payload.release.html_url;
   message = github.context.payload.release.name;
-  branch = payload.release.target_commitish;
+  branch = github.payload.release.target_commitish;
 
 }
 else {
