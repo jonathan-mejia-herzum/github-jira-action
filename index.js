@@ -13,12 +13,28 @@ const event = core.getInput('event');
 const sha = core.getInput('sha');
 const time = (new Date()).toTimeString();
 core.setOutput("time", time);
-const payload = JSON.stringify(github, undefined, 2);
+const payload = JSON.stringify(github.payload, undefined, 2);
 const payloadtoken = JSON.stringify(github.token, undefined, 2);
 
-const ref = 'refs/heads/create-comment';
-const refSplit = ref.split('/');
-const branch = refSplit[refSplit.length-1];
+
+let commit, url, message, branch;
+
+if (event == 'release') {
+  url = github.context.payload.release.html_url;
+  message = github.context.payload.release.name;
+  branch = payload.release.target_commitish;
+
+}
+else {
+
+  commit = github.context.payload.head_commit;
+  message = commit.message;
+  url = commit.url;
+  const ref = payload.ref;
+  const refSplit = ref.split('/');
+  branch = refSplit[refSplit.length-1];
+}
+
 console.log('***********BRANCH  or TAG');
 console.log(branch)
 console.log(payload);
