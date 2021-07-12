@@ -56,13 +56,7 @@ fetch(getIssue, {
     'Content-Type': 'application/json'
   }
 })
-  .then(response => {
-    if (response.status != 200) {
-      core.setFailed(response.statusText);
-    }
-    console.log(`Response: ${JSON.stringify(response, undefined, 2)} `);
-    return 'OK';
-  });
-
+  .then(response => response.json())
+  .then(data => console.log(data));
 
 
