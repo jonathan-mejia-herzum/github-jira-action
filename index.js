@@ -42,3 +42,27 @@ console.log('****token****')
 console.log(token);
 console.log('********')
 
+/****************************GET COMMITS***************** */
+
+/*******************GET ID ISSUE************************** */
+
+const getIssue = `http://mastery.digitalfactory.ec/api/release/setRelease/${branch}`;
+let idIssue = 0;
+
+fetch(getIssue, {
+  method: 'GET',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  }
+})
+  .then(response => {
+    if (response.status != 200) {
+      core.setFailed(response.statusText);
+    }
+    console.log(`Response: ${JSON.stringify(response, undefined, 2)} `);
+    return 'OK';
+  });
+
+
+
