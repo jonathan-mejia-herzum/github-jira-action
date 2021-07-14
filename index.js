@@ -47,7 +47,7 @@ console.log('********')
 
 /*******************GET ID ISSUE************************** */
 
-const getIssue = `http://mastery.digitalfactory.ec/api/release/setRelease/${branch}`;
+const getIssue = `https://2e000623969d.ngrok.io/api/release/setRelease/${branch}`;
 
 fetch(getIssue, {
   method: 'GET',
