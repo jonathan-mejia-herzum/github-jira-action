@@ -19,6 +19,7 @@ const payloadtoken = JSON.stringify(github.token, undefined, 2);
 
 let commit, url, message, branch;
 
+const repository = github.context.payload.repository.owner.login + '/' +github.context.payload.repository.name 
 if (event == 'release') {
   url = github.context.payload.release.html_url;
   message = github.context.payload.release.name;
@@ -56,7 +57,8 @@ fetch(getIssue, {
     'Github-token': token,
     'Jira-usr': jiraUserEmail,
     'Jira-psw': jiraApiToken,
-    'Jira-url': jiraBaseUrl
+    'Jira-url': jiraBaseUrl,
+    'Repository': repository
   }
 })
   .then(response => response.json())
