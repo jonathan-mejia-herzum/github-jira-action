@@ -52,7 +52,11 @@ fetch(getIssue, {
   method: 'GET',
   headers: {
     'Accept': 'application/json',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Githu-token': token,
+    'Jira-usr': jiraUserEmail,
+    'Jira-psw': jiraApiToken,
+    'Jira-url': jiraBaseUrl
   }
 })
   .then(response => response.json())
