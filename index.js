@@ -53,7 +53,7 @@ fetch(getIssue, {
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Githu-token': token,
+    'Github-token': token,
     'Jira-usr': jiraUserEmail,
     'Jira-psw': jiraApiToken,
     'Jira-url': jiraBaseUrl
