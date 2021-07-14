@@ -47,7 +47,6 @@ console.log('********')
 /*******************GET ID ISSUE************************** */
 
 const getIssue = `http://mastery.digitalfactory.ec/api/release/setRelease/${branch}`;
-let idIssue = 0;
 
 fetch(getIssue, {
   method: 'GET',
